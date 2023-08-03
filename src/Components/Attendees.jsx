@@ -1,5 +1,5 @@
 import {useState} from "react"
-import Attendee from "./Attendee.jsk"
+import Attendee from "./Attendee.jsx"
 
 
 
