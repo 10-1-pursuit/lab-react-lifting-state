@@ -1,3 +1,31 @@
-export default function Attendees() {
-  return;
+import React, { useState } from "react";
+import Attendee from "./Attendee.jsx";
+
+const Attendees = ({ event, updateEventAttendance }) => {
+  const [showAttendees, setShowAttendees] = useState(false);
+  const { people: attendees } = event;
+
+  function toggleEventAttendees() {
+    setShowAttendees(!showAttendees);
+  }
+
+  return (
+    <>
+      <button onClick={toggleEventAttendees}>
+        {!showAttendees ? "Show Attendees" : "Hide Attendees"}
+      </button>
+
+      {showAttendees ? (
+        <div className="attendees">
+          {attendees.map((attendee, index) => (
+            <>
+              <Attendee attendee={attendee} event={event} updateEventAttendance={updateEventAttendance} />
+            </>
+          ))}
+        </div>
+      ) : null}
+    </>
+  )
 }
+
+export default Attendees
