@@ -1,18 +1,18 @@
 import { useState } from "react";
 import eventsData from "./data";
-import { v1 as generateUniqueID } from "uuid";
+// import { v1 as generateUniqueID } from "uuid";
 // import Attendees from "./Attendees";
 // import Event from "./Components/Event";
 // import Footer from "./Components/Footer";
-// import Header from "./Components/Header";
-// import NewEventForm from "./Components/NewEventForm";
+import Header from "./Components/Header";
+import NewEventForm from "./Components/NewEventForm";
 
 function App() {
   const [events, setEvents] = useState(eventsData);
 
   const [showAttendees, setShowAttendees] = useState(false);
 
-  const [selectOption, setSelectOption] = useState("");
+  // const [selectOption, setSelectOption] = useState("");
 
   const [newEvent, setNewEvent] = useState({
     id: "",
@@ -24,81 +24,79 @@ function App() {
     people: [],
   });
 
-  function addEvent() {
-    const createEvent = {
-      id: generateUniqueID(),
-      eventType: selectOption,
-      name: newEvent.name,
-      organizer: newEvent.organizer,
-      eventImage: newEvent.eventImage || "https://loremflickr.com/640/480/",
-      date: newEvent.date,
-      people: [],
-    };
-    handleAddEvent(createEvent);
-  }
+  // function addEvent() {
+  //   const createEvent = {
+  //     id: generateUniqueID(),
+  //     eventType: selectOption,
+  //     name: newEvent.name,
+  //     organizer: newEvent.organizer,
+  //     eventImage: newEvent.eventImage || "https://loremflickr.com/640/480/",
+  //     date: newEvent.date,
+  //     people: [],
+  //   };
+  //   handleAddEvent(createEvent);
+  // }
 
-  function handleSelectChange(e) {
-    setSelectOption(e.target.value);
-  }
+  // function handleSelectChange(e) {
+  //   setSelectOption(e.target.value);
+  // }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    addEvent();
-    resetEventForm();
-  }
+  // function handleSubmit(e) {
+  //   e.preventDefault();
+  //   addEvent();
+  //   resetEventForm();
+  // }
 
-  function handleTextChange(e) {
-    setNewEvent({
-      ...newEvent,
-      [e.target.id]: e.target.value,
-    });
-  }
+  // function handleTextChange(e) {
+  //   setNewEvent({
+  //     ...newEvent,
+  //     [e.target.id]: e.target.value,
+  //   });
+  // }
 
-  function resetEventForm() {
-    setNewEvent({
-      id: "",
-      eventType: "",
-      name: "",
-      organizer: "",
-      eventImage: "",
-      date: "",
-    });
-    setSelectOption("");
-  }
+  // function resetEventForm() {
+  //   setNewEvent({
+  //     id: "",
+  //     eventType: "",
+  //     name: "",
+  //     organizer: "",
+  //     eventImage: "",
+  //     date: "",
+  //   });
+  //   setSelectOption("");
+  // }
 
-  function handleAddEvent(event) {
-    setEvents([event, ...events]);
-  }
+  // function handleAddEvent(event) {
+  //   setEvents([event, ...events]);
+  // }
 
   function toggleEventAttendees() {
     setShowAttendees(!showAttendees);
   }
 
-  function updateEventAttendance(eventId, attendeeId) {
-    const eventArray = [...events];
-    const eventIndex = eventArray.findIndex((event) => eventId === event.id);
-    const event = { ...eventArray[eventIndex] };
-    const personIndex = event.people.findIndex(
-      (person) => person.id === attendeeId
-    );
-    const peopleArray = [...event.people];
-    peopleArray[personIndex].attendance = !peopleArray[personIndex].attendance;
-    event.people = peopleArray;
-    eventArray[eventIndex] = event;
-    setEvents(eventArray);
-  }
+  // function updateEventAttendance(eventId, attendeeId) {
+  //   const eventArray = [...events];
+  //   const eventIndex = eventArray.findIndex((event) => eventId === event.id);
+  //   const event = { ...eventArray[eventIndex] };
+  //   const personIndex = event.people.findIndex(
+  //     (person) => person.id === attendeeId
+  //   );
+  //   const peopleArray = [...event.people];
+  //   peopleArray[personIndex].attendance = !peopleArray[personIndex].attendance;
+  //   event.people = peopleArray;
+  //   eventArray[eventIndex] = event;
+  //   setEvents(eventArray);
+  // }
 
   return (
     <div className="App">
       <>
-        <header>
-          <h1 className="color-change-5x">RSVP App</h1>
-        </header>
+        <Header />
       </>
       <main>
         <div className="new-event">
           <>
-            <form onSubmit={handleSubmit}>
+            {/* <form onSubmit={handleSubmit}>
               <h3>Create a new event</h3>
               <label htmlFor="name">Event name:</label>
               <input
@@ -134,7 +132,12 @@ function App() {
               </select>
               <br />
               <input type="submit" />
-            </form>
+            </form> */}
+            <NewEventForm
+              newEvent={newEvent}
+              setNewEvent={setNewEvent}
+              // NewEventForm={NewEventForm}
+            />
           </>
         </div>
         <div className="events">

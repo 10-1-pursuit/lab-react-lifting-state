@@ -7,7 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   /* background-color: #f5ebe0; */
   color: #7d7872;
-  background-color: #ffffff;
+  background-color: rgba(198, 50, 17, 0.912); 
 }
 
 header {
