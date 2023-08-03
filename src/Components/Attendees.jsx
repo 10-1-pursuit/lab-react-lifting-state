@@ -15,19 +15,26 @@ function toggleEventAttendees(){
 
   return(
     <>
-    <button onClick={toggleEventAttendees}>{!showAttendees ? "Show Attendees" : "Hide Attendees"}</button>
+    <button onClick={toggleEventAttendees}>
+      {!showAttendees ? "Show Attendees" : "Hide Attendees"}
+      </button>
     {showAttendees ? (
-      <div className="attendees">
+       
+      <div key={attendees.index} className="attendees" >
         {attendees.map((attendee, index)=> (
+          
           <Attendee
           attendee={attendee}
           event={event}
+          
           updateEventAttendance={updateEventAttendance}/>
-
+         
         ))}
+    
       </div>
-    ): null
-        }
+      
+    ): null}
+      
     </>
   )
-        }
+}

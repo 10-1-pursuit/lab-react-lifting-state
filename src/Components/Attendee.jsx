@@ -1,6 +1,8 @@
+import React from "react"
+
 export default function Attendee({attendee, updateEventAttendance, event}) {
   return(
-    <div key={Attendee.id} className="attendee">
+    <div key={attendee.id} className="attendee">
       <p>
         <img src={attendee.avatar} alt={attendee.firstName} />
         {" "}

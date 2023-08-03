@@ -1,4 +1,4 @@
-import Attendees from "./Attendees.jsx";
+import Attendees from "./Attendees"
 
 
 export default function Event({event,  updateEventAttendance }) {
@@ -6,7 +6,7 @@ export default function Event({event,  updateEventAttendance }) {
 
     <>
     <li key={event.id} className="event">
-      <img src="{event.eventImage} alt={event.name}" />
+      <img src={event.eventImage} alt={event.name} />
       <h5>
         {event.name} {event.eventType}
       </h5>
