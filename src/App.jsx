@@ -1,16 +1,65 @@
 import { useState } from "react";
 import eventsData from "./data";
-import { v1 as generateUniqueID } from "uuid";
+// import { v1 as generateUniqueID } from "uuid";
 // import Attendees from "./Attendees";
-// import Event from "./Components/Event";
-// import Footer from "./Components/Footer";
-// import Header from "./Components/Header";
-// import NewEventForm from "./Components/NewEventForm";
+import Event from "./Components/Event.jsx";
+import Footer from "./Components/Footer.jsx";
+import Header from "./Components/Header.jsx";
+import NewEventForm from "./Components/NewEventForm.jsx";
+// import Attendee from "./Components/Attendee"
+
+
+
 
 function App() {
   const [events, setEvents] = useState(eventsData);
 
-  const [showAttendees, setShowAttendees] = useState(false);
+  function handleAddEvent(event) {
+    setEvents([event, ...events])
+  }
+
+  function updateEventAttendance(eventId,attendeeId) {
+    const eventArray =[...events]
+    const eventIndex =eventArray.findIndex((event)=> eventId === eventId)
+    const event ={...eventArray[eventIndex] }
+    const personIndex = event.people.findIndex(
+      (person)=> person.id === attendeeId
+    )
+    const peopleArray = [...event.people]
+    peopleArray[personIndex].attendance = !peopleArray[personIndex].attendance
+    event.people = peopleArray
+    eventArray[eventIndex] =event
+    setEvents(eventArray)
+  }
+
+  return (
+    <div className="App">
+
+
+
+      <Header />
+
+<main>
+  <div className="new-event">
+    <NewEventForm handleAddEvent={handleAddEvent} />
+  </div>
+  <div className="events">
+    <ul>
+      {events.map((event)=>(
+        <Event
+        event={event}
+        updateEventAttendance={updateEventAttendance} />
+      ))}
+    </ul>
+  </div>
+</main>
+<Footer />
+    </div>
+  )
+      }
+
+
+export default App
 
   const [selectOption, setSelectOption] = useState("");
 
@@ -74,19 +123,8 @@ function App() {
     setShowAttendees(!showAttendees);
   }
 
-  function updateEventAttendance(eventId, attendeeId) {
-    const eventArray = [...events];
-    const eventIndex = eventArray.findIndex((event) => eventId === event.id);
-    const event = { ...eventArray[eventIndex] };
-    const personIndex = event.people.findIndex(
-      (person) => person.id === attendeeId
-    );
-    const peopleArray = [...event.people];
-    peopleArray[personIndex].attendance = !peopleArray[personIndex].attendance;
-    event.people = peopleArray;
-    eventArray[eventIndex] = event;
-    setEvents(eventArray);
-  }
+  
+
 
   return (
     <div className="App">
@@ -161,16 +199,7 @@ function App() {
                         <div className="attendees">
                           {attendees.map((attendee, index) => (
                             <>
-                              <div key={attendee.id} className="attendee">
-                                <p>
-                                  <img
-                                    src={attendee.avatar}
-                                    alt={attendee.firstName}
-                                  />
-                                  {"   "}
-                                  <span>
-                                    {" "}
-                                    {attendee.firstName} {attendee.lastName}{" "}
+                              
                                   </span>
                                 </p>
                                 <p>
