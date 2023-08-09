@@ -55,7 +55,7 @@ export default function NewEventForm({ events, setEvents }) {
   }
 
   return (
-    <>
+    <div className="new-event">
       <form onSubmit={handleSubmit}>
         <h3>Create a new event</h3>
         <label htmlFor="name">Event name:</label>
@@ -93,6 +93,6 @@ export default function NewEventForm({ events, setEvents }) {
         <br />
         <input type="submit" />
       </form>
-    </>
+    </div>
   );
 }

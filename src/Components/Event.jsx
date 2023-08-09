@@ -15,10 +15,10 @@ export default function Event({ events, setEvents }) {
     setEvents(eventArray);
   }
   return (
-    <div className="events">
+    <>
       <ul>
         {events.map((event) => (
-          <div className="event" key={event.id}>
+          <div className="events" key={event.id}>
             <li>
               <img src={event.eventImage} alt={event.name} />
               <h5>
@@ -28,6 +28,7 @@ export default function Event({ events, setEvents }) {
               <span>Organized by: {event.organizer} </span>
               <br />
               <Attendees
+                Attendees={Attendees}
                 event={event}
                 updateEventAttendance={updateEventAttendance}
               />
@@ -35,6 +36,6 @@ export default function Event({ events, setEvents }) {
           </div>
         ))}
       </ul>
-    </div>
+    </>
   );
 }
