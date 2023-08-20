@@ -1,19 +1,21 @@
 import { useState } from "react";
 import eventsData from "./data";
-import { v1 as generateUniqueID } from "uuid";
+import Attendees from "./Components/Attendees";
+// import { v1 as generateUniqueID } from "uuid";
 // import Attendees from "./Attendees";
 // import Event from "./Components/Event";
-// import Footer from "./Components/Footer";
-// import Header from "./Components/Header";
-// import NewEventForm from "./Components/NewEventForm";
+import Footer from "./Components/Footer";
+import Header from "./Components/Header";
+import NewEventForm from "./Components/NewEventForm";
+import Events from "./Components/Event";
 
 function App() {
   const [events, setEvents] = useState(eventsData);
-
+  
   const [showAttendees, setShowAttendees] = useState(false);
-
+  
   const [selectOption, setSelectOption] = useState("");
-
+  
   const [newEvent, setNewEvent] = useState({
     id: "",
     eventType: "",
@@ -23,82 +25,87 @@ function App() {
     date: "",
     people: [],
   });
-
-  function addEvent() {
-    const createEvent = {
-      id: generateUniqueID(),
-      eventType: selectOption,
-      name: newEvent.name,
-      organizer: newEvent.organizer,
-      eventImage: newEvent.eventImage || "https://loremflickr.com/640/480/",
-      date: newEvent.date,
-      people: [],
-    };
-    handleAddEvent(createEvent);
-  }
-
-  function handleSelectChange(e) {
-    setSelectOption(e.target.value);
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    addEvent();
-    resetEventForm();
-  }
-
-  function handleTextChange(e) {
-    setNewEvent({
-      ...newEvent,
-      [e.target.id]: e.target.value,
-    });
-  }
-
-  function resetEventForm() {
-    setNewEvent({
-      id: "",
-      eventType: "",
-      name: "",
-      organizer: "",
-      eventImage: "",
-      date: "",
-    });
-    setSelectOption("");
-  }
-
-  function handleAddEvent(event) {
-    setEvents([event, ...events]);
-  }
-
-  function toggleEventAttendees() {
-    setShowAttendees(!showAttendees);
-  }
-
-  function updateEventAttendance(eventId, attendeeId) {
-    const eventArray = [...events];
-    const eventIndex = eventArray.findIndex((event) => eventId === event.id);
-    const event = { ...eventArray[eventIndex] };
-    const personIndex = event.people.findIndex(
-      (person) => person.id === attendeeId
-    );
-    const peopleArray = [...event.people];
-    peopleArray[personIndex].attendance = !peopleArray[personIndex].attendance;
-    event.people = peopleArray;
-    eventArray[eventIndex] = event;
-    setEvents(eventArray);
-  }
-
-  return (
-    <div className="App">
-      <>
+  
+  // function addEvent() {
+    //   const createEvent = {
+      //     id: generateUniqueID(),
+      //     eventType: selectOption,
+      //     name: newEvent.name,
+      //     organizer: newEvent.organizer,
+      //     eventImage: newEvent.eventImage || "https://loremflickr.com/640/480/",
+      //     date: newEvent.date,
+      //     people: [],
+      //   };
+      //   handleAddEvent(createEvent);
+      // }
+      
+      // function handleSelectChange(e) {
+        //   setSelectOption(e.target.value);
+        // }
+        
+        // function handleSubmit(e) {
+          //   e.preventDefault();
+          //   addEvent();
+          //   resetEventForm();
+          // }
+          
+          // function handleTextChange(e) {
+            //   setNewEvent({
+              //     ...newEvent,
+              //     [e.target.id]: e.target.value,
+              //   });
+              // }
+              
+              // function resetEventForm() {
+                //   setNewEvent({
+                  //     id: "",
+                  //     eventType: "",
+                  //     name: "",
+                  //     organizer: "",
+                  //     eventImage: "",
+                  //     date: "",
+                  //   });
+                  //   setSelectOption("");
+                  // }
+                  
+                  // function handleAddEvent(event) {
+                    //   setEvents([event, ...events]);
+                    // }
+                    
+                    
+                    // function updateEventAttendance(eventId, attendeeId) {
+                      //   const eventArray = [...events];
+                      //   const eventIndex = eventArray.findIndex((event) => eventId === event.id);
+                      //   const event = { ...eventArray[eventIndex] };
+                      //   const personIndex = event.people.findIndex(
+                        //     (person) => person.id === attendeeId
+                        //   );
+                        //   const peopleArray = [...event.people];
+                        //   peopleArray[personIndex].attendance = !peopleArray[personIndex].attendance;
+                        //   event.people = peopleArray;
+                        //   eventArray[eventIndex] = event;
+                        //   setEvents(eventArray);
+                        // }
+                        function toggleEventAttendees() {
+                          setShowAttendees(!showAttendees);
+                        }
+                        
+                        return (
+                          <div className="App">
+      <Header/>
+      {/* <>
         <header>
-          <h1 className="color-change-5x">RSVP App</h1>
+        <h1 className="color-change-5x">RSVP App</h1>
         </header>
-      </>
+      </> */}
       <main>
         <div className="new-event">
+          <NewEventForm/>
+     
+       
           <>
-            <form onSubmit={handleSubmit}>
+       
+            {/* <form onSubmit={handleSubmit}>
               <h3>Create a new event</h3>
               <label htmlFor="name">Event name:</label>
               <input
@@ -134,11 +141,14 @@ function App() {
               </select>
               <br />
               <input type="submit" />
-            </form>
+            </form> */}
           </>
         </div>
+        
         <div className="events">
-          <ul>
+          <Events/>
+        
+          {/* <ul>
             {events.map((event) => {
               const { people: attendees } = event;
 
@@ -203,10 +213,14 @@ function App() {
                 </>
               );
             })}
-          </ul>
-        </div>
+          </ul>  */}
+        </div> 
       </main>
       <>
+      
+      <Footer/>
+      </>
+       {/* <>
         <footer>
           <ul>
             <li>Contact</li>
@@ -214,7 +228,7 @@ function App() {
             <li>Legal</li>
           </ul>
         </footer>
-      </>
+      </> */}
     </div>
   );
 }
