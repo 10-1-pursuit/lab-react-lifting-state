@@ -3,9 +3,14 @@ import { useState } from "react";
 
 export default function NewEventForm({ handleAddEvent }) {
   function addEvent() {
+    function handleAddEvent(event) {
+        setEvents([event, ...events]);
+       }
+       
+      
+    
     
 
-    const [selectOption, setSelectOption] = useState("");
     const [newEvent, setNewEvent] = useState({
       id: "",
       eventType: "",
@@ -15,8 +20,8 @@ export default function NewEventForm({ handleAddEvent }) {
       date: "",
       people: [],
     });
-  
-
+    const [selectOption, setSelectOption] = useState("");
+    
     const createEvent = {
       id: generateUniqueID(),
       eventType: selectOption,
@@ -30,6 +35,8 @@ export default function NewEventForm({ handleAddEvent }) {
   }
   
   function handleSelectChange(e) {
+    const [selectOption, setSelectOption] = useState("");
+   
     setSelectOption(e.target.value);
   }
   
