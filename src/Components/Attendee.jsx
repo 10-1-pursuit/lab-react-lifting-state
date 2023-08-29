@@ -1,3 +1,7 @@
 export default function Attendee() {
-  return;
+  return(
+    <div>
+      
+    </div>
+  );
 }

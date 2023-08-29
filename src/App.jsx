@@ -1,6 +1,8 @@
 import { useState } from "react";
 import eventsData from "./data";
 import { v1 as generateUniqueID } from "uuid";
+import Footer from "./Components/Footer";
+import Header from "./Components/Header";
 // import Attendees from "./Attendees";
 // import Event from "./Components/Event";
 // import Footer from "./Components/Footer";
@@ -8,7 +10,7 @@ import { v1 as generateUniqueID } from "uuid";
 // import NewEventForm from "./Components/NewEventForm";
 
 function App() {
-  const [events, setEvents] = useState(eventsData);
+  // const [events, setEvents] = useState(eventsData);
 
   const [showAttendees, setShowAttendees] = useState(false);
 
@@ -24,18 +26,18 @@ function App() {
     people: [],
   });
 
-  function addEvent() {
-    const createEvent = {
-      id: generateUniqueID(),
-      eventType: selectOption,
-      name: newEvent.name,
-      organizer: newEvent.organizer,
-      eventImage: newEvent.eventImage || "https://loremflickr.com/640/480/",
-      date: newEvent.date,
-      people: [],
-    };
-    handleAddEvent(createEvent);
-  }
+  // function addEvent() {
+  //   const createEvent = {
+  //     id: generateUniqueID(),
+  //     eventType: selectOption,
+  //     name: newEvent.name,
+  //     organizer: newEvent.organizer,
+  //     eventImage: newEvent.eventImage || "https://loremflickr.com/640/480/",
+  //     date: newEvent.date,
+  //     people: [],
+  //   };
+  //   handleAddEvent(createEvent);
+  // }
 
   function handleSelectChange(e) {
     setSelectOption(e.target.value);
@@ -66,9 +68,9 @@ function App() {
     setSelectOption("");
   }
 
-  function handleAddEvent(event) {
-    setEvents([event, ...events]);
-  }
+  // function handleAddEvent(event) {
+  //   setEvents([event, ...events]);
+  // }
 
   function toggleEventAttendees() {
     setShowAttendees(!showAttendees);
@@ -90,11 +92,7 @@ function App() {
 
   return (
     <div className="App">
-      <>
-        <header>
-          <h1 className="color-change-5x">RSVP App</h1>
-        </header>
-      </>
+      <Header/>
       <main>
         <div className="new-event">
           <>
@@ -206,15 +204,7 @@ function App() {
           </ul>
         </div>
       </main>
-      <>
-        <footer>
-          <ul>
-            <li>Contact</li>
-            <li>About</li>
-            <li>Legal</li>
-          </ul>
-        </footer>
-      </>
+      <Footer/>
     </div>
   );
 }
