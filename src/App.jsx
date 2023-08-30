@@ -3,28 +3,27 @@ import eventsData from "./data";
 import { v1 as generateUniqueID } from "uuid";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
-// import Attendees from "./Attendees";
-// import Event from "./Components/Event";
-// import Footer from "./Components/Footer";
-// import Header from "./Components/Header";
-// import NewEventForm from "./Components/NewEventForm";
+import NewEventForm from "./Components/NewEventForm";
+import Event from "./Components/Event";
+// import Attendees from "./Attendees"; import Event from "./Components/Event";
+
 
 function App() {
-  // const [events, setEvents] = useState(eventsData);
+  //  const [events, setEvents] = useState(eventsData);
 
-  const [showAttendees, setShowAttendees] = useState(false);
+  // const [showAttendees, setShowAttendees] = useState(false);
 
-  const [selectOption, setSelectOption] = useState("");
+  // const [selectOption, setSelectOption] = useState("");
 
-  const [newEvent, setNewEvent] = useState({
-    id: "",
-    eventType: "",
-    name: "",
-    organizer: "",
-    eventImage: "",
-    date: "",
-    people: [],
-  });
+  // const [newEvent, setNewEvent] = useState({
+  //   id: "",
+  //   eventType: "",
+  //   name: "",
+  //   organizer: "",
+  //   eventImage: "",
+  //   date: "",
+  //   people: [],
+  // });
 
   // function addEvent() {
   //   const createEvent = {
@@ -39,63 +38,66 @@ function App() {
   //   handleAddEvent(createEvent);
   // }
 
-  function handleSelectChange(e) {
-    setSelectOption(e.target.value);
-  }
+  // function handleSelectChange(e) {
+  //   setSelectOption(e.target.value);
+  // }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    addEvent();
-    resetEventForm();
-  }
+  // function handleSubmit(e) {
+  //   e.preventDefault();
+  //   addEvent();
+  //   resetEventForm();
+  // }
 
-  function handleTextChange(e) {
-    setNewEvent({
-      ...newEvent,
-      [e.target.id]: e.target.value,
-    });
-  }
+  // function handleTextChange(e) {
+  //   setNewEvent({
+  //     ...newEvent,
+  //     [e.target.id]: e.target.value,
+  //   });
+  // }
 
-  function resetEventForm() {
-    setNewEvent({
-      id: "",
-      eventType: "",
-      name: "",
-      organizer: "",
-      eventImage: "",
-      date: "",
-    });
-    setSelectOption("");
-  }
+  // function resetEventForm() {
+  //   setNewEvent({
+  //     id: "",
+  //     eventType: "",
+  //     name: "",
+  //     organizer: "",
+  //     eventImage: "",
+  //     date: "",
+  //   });
+  //   setSelectOption("");
+  // }
 
   // function handleAddEvent(event) {
   //   setEvents([event, ...events]);
   // }
 
-  function toggleEventAttendees() {
-    setShowAttendees(!showAttendees);
-  }
+  // function toggleEventAttendees() {
+  //   setShowAttendees(!showAttendees);
+  // }
 
-  function updateEventAttendance(eventId, attendeeId) {
-    const eventArray = [...events];
-    const eventIndex = eventArray.findIndex((event) => eventId === event.id);
-    const event = { ...eventArray[eventIndex] };
-    const personIndex = event.people.findIndex(
-      (person) => person.id === attendeeId
-    );
-    const peopleArray = [...event.people];
-    peopleArray[personIndex].attendance = !peopleArray[personIndex].attendance;
-    event.people = peopleArray;
-    eventArray[eventIndex] = event;
-    setEvents(eventArray);
-  }
+  // function updateEventAttendance(eventId, attendeeId) {
+  //   const eventArray = [...events];
+  //   const eventIndex = eventArray.findIndex((event) => eventId === event.id);
+  //   const event = { ...eventArray[eventIndex] };
+  //   const personIndex = event.people.findIndex(
+  //     (person) => person.id === attendeeId
+  //   );
+  //   const peopleArray = [...event.people];
+  //   peopleArray[personIndex].attendance = !peopleArray[personIndex].attendance;
+  //   event.people = peopleArray;
+  //   eventArray[eventIndex] = event;
+  //   setEvents(eventArray);
+  // }
 
   return (
     <div className="App">
       <Header/>
       <main>
+        {/* <NewEventForm/>
+        <Event/> */}
         <div className="new-event">
-          <>
+          <NewEventForm />
+          {/* <>
             <form onSubmit={handleSubmit}>
               <h3>Create a new event</h3>
               <label htmlFor="name">Event name:</label>
@@ -133,10 +135,11 @@ function App() {
               <br />
               <input type="submit" />
             </form>
-          </>
+          </> */}
         </div>
-        <div className="events">
-          <ul>
+         <div className="events">
+          <Event />
+          {/* <ul>
             {events.map((event) => {
               const { people: attendees } = event;
 
@@ -201,8 +204,8 @@ function App() {
                 </>
               );
             })}
-          </ul>
-        </div>
+          </ul> */}
+        </div> 
       </main>
       <Footer/>
     </div>
