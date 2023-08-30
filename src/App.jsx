@@ -4,8 +4,9 @@ import { v1 as generateUniqueID } from "uuid";
 // import Attendees from "./Attendees";
 // import Event from "./Components/Event";
 // import Footer from "./Components/Footer";
-// import Header from "./Components/Header";
-// import NewEventForm from "./Components/NewEventForm";
+ import Header from "./Components/Header";
+ import NewEventForm from "./Components/NewEventForm";
+import Footer from "./Components/Footer";
 
 function App() {
   const [events, setEvents] = useState(eventsData);
@@ -91,14 +92,13 @@ function App() {
   return (
     <div className="App">
       <>
-        <header>
-          <h1 className="color-change-5x">RSVP App</h1>
-        </header>
+       <Header/>
       </>
+      <div/>
       <main>
         <div className="new-event">
           <>
-            <form onSubmit={handleSubmit}>
+            {/* <form onSubmit={handleSubmit}>
               <h3>Create a new event</h3>
               <label htmlFor="name">Event name:</label>
               <input
@@ -134,7 +134,8 @@ function App() {
               </select>
               <br />
               <input type="submit" />
-            </form>
+            </form> */}
+            <NewEventForm />
           </>
         </div>
         <div className="events">
@@ -207,13 +208,14 @@ function App() {
         </div>
       </main>
       <>
-        <footer>
+        {/* <footer>
           <ul>
             <li>Contact</li>
             <li>About</li>
             <li>Legal</li>
           </ul>
-        </footer>
+        </footer> */}
+        <Footer/>
       </>
     </div>
   );
