@@ -5,7 +5,7 @@ import Footer from "./Components/Footer";
 import Header from "./Components/Header";
 import NewEventForm from "./Components/NewEventForm";
 import Event from "./Components/Event";
-// import Attendees from "./Attendees"; import Event from "./Components/Event";
+import Attendees from "./Components/Attendees"; 
 
 
 function App() {
@@ -93,8 +93,6 @@ function App() {
     <div className="App">
       <Header/>
       <main>
-        {/* <NewEventForm/>
-        <Event/> */}
         <div className="new-event">
           <NewEventForm />
           {/* <>
@@ -139,6 +137,7 @@ function App() {
         </div>
          <div className="events">
           <Event />
+          <Attendees />
           {/* <ul>
             {events.map((event) => {
               const { people: attendees } = event;
